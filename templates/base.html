@@ -1,0 +1,187 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en-us" dir="ltr">
+
+<head>
+  <title>Site administration | Django site admin</title>
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="robots" content="NONE,NOARCHIVE">
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/base.css">
+  <!-- <link rel="stylesheet" type="text/css" href="/static/admin/css/nav_sidebar.css"> -->
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/dashboard.css">
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/responsive.css">
+  <link rel="stylesheet" type="text/css" href="/static/admin/css/forms.css">
+
+  <link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+
+</head>
+
+{% if stauts_body == 'page-home' %}
+<body class=" dashboard" data-admin-utc-offset="0">
+{% else %}
+<body class=" app-project_control model-documentmodel change-list" data-admin-utc-offset="0">
+{% endif %}
+
+  <!-- Container -->
+  <div id="container">
+
+    <!-- Header -->
+    <div id="header">
+      <div id="branding">
+        <h1 id="site-name"><a href="/">Projects Control</a></h1>
+      </div>
+      <div id="user-tools">
+        Welcome,
+        <strong>admin</strong>.
+        <a href="/">Home</a> /
+        <a href="/admin/">Admin Access</a> /
+        <a href="{% url 'logout' %}">Log out</a>
+      </div>
+    </div>
+
+    
+{% if stauts_body != 'page-home' %}
+
+<div class="breadcrumbs">
+  <a href="/">Home</a>
+  &rsaquo; <a href="#">Lista de Documentos</a>
+</div>
+
+<div class="main shifted" id="main">
+
+  <button class="sticky toggle-nav-sidebar" id="toggle-nav-sidebar" aria-label="Toggle navigation"></button>
+
+  <!-- NAV-->
+  <nav class="sticky" id="nav-sidebar">
+    <div class="app-auth module">
+      <table>
+        <caption>
+          <a href="/admin/auth/" class="section"
+          title="Projects Currently in Progress">PROJETOS EM ANDAMENTO</a>
+        </caption>
+  
+        <tr class="model-group">
+          <th scope="row"><a href="#">Lista de Projetos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="#" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-user">
+          <th scope="row"><a href="#">Status do Projeto</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="#" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-group">
+          <th scope="row"><a href="#">Criar Lista de Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+        </tr>
+  
+      </table>
+    </div>
+  
+    <div class="app-project_control module">
+      <table>
+        <caption>
+          <a href="/admin/project_control/" class="section"
+            title="Models in the Project_Control application">CONFIGURAÇÃO DE PROJETOS</a>
+        </caption>
+  
+        <tr class="model-action">
+          <th scope="row"><a href="#">Novo Projeto</a></th>
+          <td><a href="/admin/project_control/project/" class="changelink">Notes</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/documentmodel/">Modelo de Documento</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/documentmodel/add/" class="addlink">Add</a></td>
+        </tr>
+        
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/doctype/">Tipos de Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/doctype/add/" class="addlink">Add</a></td>
+        </tr>
+
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/subject/">Disciplinas</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/subject/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/action/">Ações</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/action/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/pagetype/">Padrões de Folha</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/pagetype/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/pageformat/">Formato de Documento</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/pageformat/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/statusdoc/">Status Documentos</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/statusdoc/add/" class="addlink">Add</a></td>
+        </tr>
+  
+        <tr class="model-doctype">
+          <th scope="row"><a href="/admin/project_control/employee/">Colaboradores</a></th>
+          <td><a href="#" class="changelink">Notes</a></td>
+          <td><a href="/admin/project_control/employee/add/" class="addlink">Add</a></td>
+        </tr>
+
+      </table>
+    </div>
+  </nav>
+
+{% endif %}
+
+
+{% block content %}
+
+{% endblock %}
+
+</div>
+</body>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!--
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+-->
+
+<!-- <script src="/static/admin/js/nav_sidebar.js" defer></script> -->
+<script src="/admin/jsi18n/"></script>
+<script src="/static/admin/js/vendor/jquery/jquery.js"></script>
+<script src="/static/admin/js/jquery.init.js"></script>
+<script src="/static/admin/js/core.js"></script>
+<script src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+<script src="/static/admin/js/actions.js"></script>
+<script src="/static/admin/js/urlify.js"></script>
+<script src="/static/admin/js/prepopulate.js"></script>
+<script src="/static/admin/js/vendor/xregexp/xregexp.js"></script>
+<script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" async></script>
+<script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]"></script>
+
+<script src="{% static 'js/scripts.js' %}"></script>
+<script src="{% static 'js/script-coin.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+
+</html>

@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="content">
+
+<!-- Content -->
+<div id="content" class="colM">
+
+    <h1>Add project</h1>
+    <h2>{{Projects.project_name}}</h2>
+    <div id="content-main">
+
+        <ul class="object-tools">
+            <li>
+                <a href="/admin/project_control/project/2/history/" class="historylink">History</a>
+            </li>
+        </ul>
+
+        <form method="post" id="project_form"> <!-- novalidate><input type="hidden" name="csrfmiddlewaretoken" value="dOPAnnfuDM96qfkRYSYyxpWCgOkAtdgoMIFLIQ7LaAfyBAGFxZy8qOodJiBnZzKA"> --> 
+            <div>
+                <fieldset class="module aligned ">
+                    {% csrf_token %}
+                    <div class="form-row field-project_name">
+                        <div>
+                            <label class="required" for="id_project_name">Project Name:</label>
+                            <input type="text" name="project_name" value="" class="vTextField" maxlength="255" placeholder="Nome do Projeto">
+                        </div>
+                    </div>
+
+                    <div class="form-row field-company">
+                        <div>
+                            <label class="required" for="id_company">Company:</label>
+                            <input type="text" name="company" value="" class="vTextField" maxlength="255" placeholder="Nome da Empresa Contratante">
+                        </div>
+                    </div>
+
+                    <div class="form-row field-code">
+                        <div>
+                            <label class="required" for="id_code">Code:</label>
+                            <input type="text" name="code" value="" class="vTextField" maxlength="255" placeholder="Código do Projeto">
+                        </div>
+                    </div>
+
+                    <div class="form-row field-comments">
+                        <div>
+                            <label class="required" for="id_comments">Comments:</label>
+                            <textarea name="comments" cols="40" rows="10" class="vLargeTextField" placeholder="Comentários"></textarea>
+                        </div>
+                    </div>
+
+                </fieldset>
+
+<div class="submit-row">
+
+    <input type="submit" value="Save" class="default" name="_save">
+
+</div>
+</div>
+
+{% endblock %}

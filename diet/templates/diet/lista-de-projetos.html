@@ -1,0 +1,95 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="alert alert-{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+
+<!-- Content -->
+<div id="content" class="">
+  <h1>Lista de Projetos</h1>
+  <div id="content-main">
+
+    <ul class="object-tools">
+      <li>
+        <a href="{% url 'new-proj' %}" class="addlink">
+          Add document model
+        </a>
+      </li>
+    </ul>
+
+    <div class="module" id="changelist">
+      <div class="changelist-form-container">
+         <form action="{% url 'pre-del-proj' %}" method="POST">
+          <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">
+          <div class="actions">
+            <label>Action:
+              <select name="action" required>
+                <option value="" selected>---------</option>
+                <option value="edite_selected">Edite or Delete selected item</option>
+              </select>
+            </label>
+              <input type="hidden" name="select_across" value="0" class="select-across">
+            <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
+            <span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>
+          </div>
+          <div class="results">
+            <table id="result_list">
+              <thead>
+                <tr>
+                  <th scope="col" class="action-checkbox-column">
+                    <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                    <div class="clear"></div>
+                  </th>
+                  <th scope="col" class="sortable column-documment_name">
+                    <div class="text"><a href="?o=1">NOME DO PROJETO</a></div>
+                    <div class="clear"></div>
+                  </th>
+                  <th scope="col" class="sortable column-doc_code">
+                    <div class="text"><a href="?o=2">EMPRESA</a></div>
+                    <div class="clear"></div>
+                  </th>
+                  <th scope="col" class="sortable column-format_doc">
+                    <div class="text"><a href="?o=3">CÓDIGO</a></div>
+                    <div class="clear"></div>
+                  </th>
+                  <th scope="col" class="sortable column-doc_type_page">
+                    <div class="text"><a href="?o=4">COMENTÁRIOS</a></div>
+                    <div class="clear"></div>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {% csrf_token %}
+                {% for proj in Projects %}
+                <tr>
+                  <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="{{proj.id}}"
+                      class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
+                  <th class="field-documment_name nowrap"><a href="/List_Docs/{{proj.id}}">{{proj.project_name}}</a></th>
+                  <td class="field-doc_code nowrap">{{proj.company}}</td>
+                  <td class="field-format_doc nowrap" >{{proj.code}}</td>
+                  <td class="field-doc_type_page nowrap">{{proj.comments}}</td>
+                </tr>
+                {% endfor %}
+
+              </tbody>
+            </table>
+          </div>
+
+          <p class="paginator">
+            {{docs_count}} documents found
+          </p>
+
+        </form>
+      </div>
+  </div>
+
+{% endblock %}

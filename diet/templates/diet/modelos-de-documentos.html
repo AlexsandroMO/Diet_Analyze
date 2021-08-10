@@ -1,0 +1,88 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+  <!-- Content -->
+  <div id="content" class="">
+    <h1>Lista de Documentos Padrão</h1>
+    <div id="content-main">
+
+      <ul class="object-tools">
+        <li>
+          <a href="/admin/project_control/documentmodel/add/" class="addlink">
+            Add document model
+          </a>
+        </li>
+      </ul>
+
+      <div class="module" id="changelist">
+        <div class="changelist-form-container">
+          <form id="changelist-form" method="post" novalidate>
+            <input type="hidden" name="csrfmiddlewaretoken" value="{{token}}">
+            <div class="actions">
+              <label>Action:
+                <select name="action" required>
+                  <option value="" selected>---------</option>
+                  <option value="delete_selected">Delete selected document models</option>
+                </select></label><input type="hidden" name="select_across" value="0" class="select-across">
+                
+              </label><input type="hidden" name="select_across" value="0" class="select-across">
+              <button type="submit" class="button" title="Run the selected action" name="index" value="{{proj.id}}">Go</button>
+              <span class="action-counter" data-actions-icnt="{{docs_count}}">{{docs_count}} of 5 selected</span>
+            </div>
+            <div class="results">
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col" class="action-checkbox-column">
+                      <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-documment_name">
+                      <div class="text"><a href="?o=1">NOME DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_code">
+                      <div class="text"><a href="?o=2">CÓDIGO DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-format_doc">
+                      <div class="text"><a href="?o=3">FORMATO DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">PADRÃO DE FOLHA</a></div>
+                      <div class="clear"></div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% csrf_token %}
+                  {% for doc in DocumentModels %}
+                  <tr>
+                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="6"
+                        class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
+                    <th class="field-documment_name nowrap"><a href="/admin/project_control/documentmodel/{{doc.id}}/change/">{{doc.documment_name}}</a></th>
+                    <td class="field-doc_code nowrap">{{doc.doc_code}}</td>
+                    <td class="field-format_doc nowrap" >{{doc.format_doc}}</td>
+                    <td class="field-doc_type_page nowrap">{{doc.doc_type_page}}</td>
+                  </tr>
+                  {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+
+            <p class="paginator">
+              {{docs_count}} documents found
+            </p>
+
+          </form>
+        </div>
+    </div>
+
+
+{% endblock %}

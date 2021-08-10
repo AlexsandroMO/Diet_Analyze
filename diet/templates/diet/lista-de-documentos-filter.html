@@ -1,0 +1,92 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+  <!-- Content -->
+  <div id="content" class="">
+    <h1>Lista de Projetos</h1>
+    <div id="content-main">
+
+      <ul class="object-tools">
+        <li>
+          <a href="/admin/project_control/documentmodel/add/" class="addlink">
+            Add document model
+          </a>
+        </li>
+      </ul>
+
+      <div class="module" id="changelist">
+        <div class="changelist-form-container">
+
+            <div class="results">
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col" class="action-checkbox-column">
+                      <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                      <div class="clear"></div>
+                    </th>
+
+                    <th scope="col" class="sortable column-format_doc">
+                      <div class="text"><a href="?o=3">NOME BASE DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">NOME DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">NÚMERO DO DOCUMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_code">
+                      <div class="text"><a href="?o=2">DISCIPLINA</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-documment_name">
+                      <div class="text"><a href="?o=1">NOME DO PROJETO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">TIPO DE FOLHA</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">FORMATO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% csrf_token %}
+                  {% for doc in LdProjs %}
+                  <tr>
+                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="6"
+                        class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
+                    <td class="field-doc_name nowrap"><a href="/admin/project_control/ldproj/{{doc.id}}/change/">{{doc.doc_name_pattern}}</td>
+                    <td class="field-format_doc nowrap" >{{doc.doc_name}}</td>
+                    <td class="field-doc_number nowrap">{{doc.doc_number}}</td>
+                    <td class="field-subject_name nowrap">{{doc.subject_name}}</td>
+                    <th class="field-proj_name nowrap">{{doc.proj_name}}</th>
+                    <td class="field-page_typenowrap">{{doc.page_type}}</td>
+                    <td class="field-format_docnowrap">{{doc.format_doc}} </td>
+                  </tr>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+
+            <p class="paginator">
+              {{docs_count}} documents found
+            </p>
+
+          </form>
+        </div>
+    </div>
+
+
+{% endblock %}
