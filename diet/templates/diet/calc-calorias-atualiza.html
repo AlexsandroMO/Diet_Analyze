@@ -1,0 +1,167 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+  <!-- Content -->
+  <div id="content" class="">
+    <h1>Lista de Documentos de <strong>{{list_proj.0}}</strong></h1>
+    <div id="content-main">
+
+      <ul class="object-tools">
+        <li>
+          <a href="/admin/project_control/documentmodel/add/" class="addlink">
+            Add document model
+          </a>
+        </li>
+      </ul>
+
+      <div class="module" id="changelist">
+        <div class="changelist-form-container">
+          <form method="post" id="project_form">
+            <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
+  
+            <div class="results">
+              <table id="result_list">
+                <thead>
+                  <tr>
+                    <th scope="col" class="action-checkbox-column">
+                      <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=0">ALIMENTO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-format_doc">
+                      <div class="text"><a href="?o=1">QT</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=2">PTN</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_code">
+                      <div class="text"><a href="?o=3">GLI</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-documment_name">
+                      <div class="text"><a href="?o=4">LIP</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=4">Ca</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=5">P</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=6">Fe</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=7">VIT-A</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=8">TIA</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=9">RIBO</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=10">NIA</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=11">VIT-C</a></div>
+                      <div class="clear"></div>
+                    </th>
+                    <th scope="col" class="sortable column-doc_type_page">
+                      <div class="text"><a href="?o=12">FIBRA</a></div>
+                      <div class="clear"></div>
+                    </th>
+
+                  </tr>
+                </thead>
+                <tbody> 
+                  {% csrf_token %}
+                  {% for item in base_read %}
+                  <tr>
+                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="0"
+                        class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
+                    <td class="field-subject_name nowrap">{{item.1}}</td>
+                    <input type="hidden" name="id_patient_name" value="{{NutriCalcs.patient_name_id}}">
+                    <td class="form-row field-qt_g nowrap">
+                      <input type="text" name="qt_g" value="{{item.2}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.3}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.4}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.5}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.6}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.7}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.8}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.9}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.10}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.11}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.12}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.13}}" class="vTextField2">
+                    </td>
+                    <td class="field-doc_name nowrap">
+                      <input type="text" name="project_name" value="{{item.14}}" class="vTextField2">
+                    </td>
+                  </tr>
+                </div>
+                  {% endfor %}
+
+                </tbody>
+              </table>
+            </div>
+
+            <p class="paginator">
+              {{docs_count}} documents found
+            </p>
+
+          
+
+          <div class="submit-row">
+
+            <input type="submit" value="Save" class="default" name="_save">
+            <p class="deletelink-box"><a href="{% url 'patient-list' %}" class="deletelink">Back</a></p>
+        
+        </div>
+        </div>
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

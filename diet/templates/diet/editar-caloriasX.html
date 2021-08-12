@@ -22,17 +22,45 @@
             <div>
                 <fieldset class="module aligned ">
                     {% csrf_token %}
+
+                    {% csrf_token %}
+                    {% for item in NutriForm %}
+                    <tr>
+                      <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="0"
+                          class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
+                          <!--admin/diet/base/{{item.id}}/change/-->
+                      <td class="field-doc_name nowrap">
+                        {% csrf_token %}
+                          <select name="food_name" required id="id_food_name">
+                            {% for items in Bases %}
+                            <option value="{{item.id}}">{{items.food_name}}</option>
+                            {% endfor %}
+                          </select>
+                      </td>
+                      <td class="field-doc_name nowrap">
+                        <select name="qt_g" required id="id_qt_g">
+                          <option value="2">{{NutriCalcs.qt_g}}</option>
+                        </select>
+                      </td>
+                      <td class="field-doc_name nowrap">
+                          <select name="ptn" required id="id_ptn">
+                            <option value="3">{{item.ptn}}</option>
+                          </select>
+                      </td>
+                      {% endfor %}
+
+
                     <div class="form-row field-project_name">
                         <div>
                             <label class="required" for="id_project_name">Project name:</label>
-                            <input type="text" name="project_name" value="{{Projects.project_name}}" class="vTextField" maxlength="255" required id="{{Projects.id}}">
+                            <input type="text" name="project_name" value="{{NutriCalcs.food_name}}" class="vTextField" maxlength="255" required id="{{Projects.id}}">
                         </div>
                     </div>
 
                     <div class="form-row field-company">
                         <div>
                             <label class="required" for="id_company">Company:</label>
-                            <input type="text" name="company" value="{{Projects.company}}" class="vTextField" maxlength="255" required id="{{Projects.id}}">
+                            <input type="text" name="company" value="{{NutriCalcs.qt_g}}" class="vTextField" maxlength="255" required id="{{Projects.id}}">
                         </div>
                     </div>
 
@@ -55,7 +83,7 @@
 <div class="submit-row">
 
     <input type="submit" value="Save" class="default" name="_save">
-    <p class="deletelink-box"><a href="{% url 'lista-proj' %}" class="deletelink">Back</a></p>
+    <p class="deletelink-box"><a href="#" class="deletelink">Back</a></p>
 
 </div>
 </div>

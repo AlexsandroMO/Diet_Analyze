@@ -1,10 +1,16 @@
 from django.urls import path
-from .views import home
 from django.conf import settings
 from django.conf.urls.static import static
+from .views import home, patientList, calorieCalc, calorieCalcAtualiza, editCalorieCalc
 
 urlpatterns = [
     path('', home, name='home-home'),
+    path('Patient_List', patientList, name='patient-list'),
+    path('calorie_Calc_Atualiza', calorieCalcAtualiza, name='calorie-calc-atualiza'),
+    path('Calorie_Calc', calorieCalc, name='calorie-calc'),
+    path('Edit_Calorie_Calc/<int:id>', editCalorieCalc, name='Edit-Calorie-Calc'),
+    
+    
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

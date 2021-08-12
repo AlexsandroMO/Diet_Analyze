@@ -7,7 +7,7 @@
 
   <!-- Content -->
   <div id="content" class="">
-    <h1>Lista de Documentos de <strong>{{list_proj.0}}</strong></h1>
+    <h1>Lista de Documentos de <strong></strong></h1>
     <div id="content-main">
 
       <ul class="object-tools">
@@ -20,16 +20,14 @@
 
       <div class="module" id="changelist">
         <div class="changelist-form-container">
-          <form action="{% url 'list-docs-filter' 0 %}" method="POST">
+          <form action="{% url 'calorie-calc' %}" method="POST">
             <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
-            <input type="" name="_id_proj" value="{{id_proj}}" hidden>  
+  
             <div class="actions">
                 <label>Action:
                   <select name="action" required>
                     <option value="" selected>---------</option>
-                    {% for item in unique %}
-                      <option value="{{item.0}}">{{item.1}}</option>
-                    {% endfor %}
+                      <option value="0">Ver Paciente</option>
                   </select>
                 </label>
                   <input type="hidden" name="select_across" value="0" class="select-across">
@@ -45,49 +43,46 @@
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">NOME DO DOCUMENTO</a></div>
+                      <div class="text"><a href="?o=0">PACIENTE</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-format_doc">
-                      <div class="text"><a href="?o=3">TIPO DE DOCUMENTO</a></div>
+                      <div class="text"><a href="?o=1">GÊNERO</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">NÚMERO DO DOCUMENTO</a></div>
+                      <div class="text"><a href="?o=2">IDADE</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-doc_code">
-                      <div class="text"><a href="?o=2">DISCIPLINA</a></div>
+                      <div class="text"><a href="?o=3">CELULAR</a></div>
                       <div class="clear"></div>
                     </th>
                     <th scope="col" class="sortable column-documment_name">
-                      <div class="text"><a href="?o=1">NOME DO PROJETO</a></div>
+                      <div class="text"><a href="?o=4">EMAIL</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">TIPO DE FOLHA</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">FORMATO</a></div>
-                      <div class="clear"></div>
-                    </th>
+                    
                   </tr>
                 </thead>
+                
                 <tbody>
                   {% csrf_token %}
-                  {% for doc in LdProjs %}
+                  {% for item in Anamnesis %}
                   <tr>
-                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="6"
+                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="{{item.id}}"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
-                    <td class="field-format_doc nowrap" >{{doc.doc_name}}</td>
-                    <td class="field-doc_name nowrap"><a href="/admin/project_control/ldproj/{{doc.id}}/change/">{{doc.type_doc}}</td>
-                    <td class="field-doc_number nowrap">{{doc.doc_number}}</td>
-                    <td class="field-subject_name nowrap">{{doc.subject_name}}</td>
-                    <th class="field-proj_name nowrap">{{doc.proj_name}}</th>
-                    <td class="field-page_typenowrap">{{doc.page_type}}</td>
-                    <td class="field-format_docnowrap">{{doc.format_doc}} </td>
+                        <!--admin/diet/base/{{item.id}}/change/-->
+                    <td class="field-doc_code nowrap"><a href="Edit_Calorie_Calc/{{item.id}}">{{item.patient_name}}</a></td>
+                    <!-- <td class="field-doc_code nowrap"><a href="/admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td> -->
+                   
+                    <td class="field-doc_code nowrap">{{item.gener}}</td>
+                    <td class="field-doc_code nowrap">{{item.age_date}}</td>
+                    <td class="field-doc_code nowrap">{{item.cel}}</td>
+                    <td class="field-doc_code nowrap">{{item.id}}</td>
+                    
                   </tr>
+                </div>
                   {% endfor %}
 
                 </tbody>
