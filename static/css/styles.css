@@ -13,7 +13,17 @@
 }
 */
 
+.results{
+  padding-bottom: 30px;
+  padding-right: 30px;
+  table-layout:fixed;
+  max-width: 100%;
+  overflow: scroll;
+  padding-bottom: 5px;
+  border-right: 30px;
+  /* overflow: hidden; */
 
+}
 
 
 .foot-foot{

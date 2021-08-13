@@ -63,21 +63,6 @@ def editCalorieCalc(request, id):
     return render(request,'diet/editar-calorias.html', {'form':form, 'NutriCalcs':NutriCalcs, 'NutriForm':NutriForm, 'Bases':Bases, 'base_read':base_read, 'read_id':read_id})
 
 
-    '''if(request.method == 'POST'):
-        form = NutriCalcForm(request.POST, instance=NutriCalcs)
-
-        if(form.is_valid()):
-            #if Projects.policy == '0':
-                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
-            NutriCalcs.save()
-            return redirect('/Patient_List')
-        else:
-            return render(request,'diet/editar-calorias.html', {'form':form, 'NutriCalcs':NutriCalcs, 'NutriForm':NutriForm, 'Bases':Bases, 'base_read':base_read})
-
-    else:
-        return render(request,'diet/editar-calorias.html', {'form':form, 'NutriCalcs':NutriCalcs, 'NutriForm':NutriForm, 'Bases':Bases, 'base_read':base_read})
-    ''' 
-
 def calorieCalcAtualiza(request):
     stauts_body = ''
 
@@ -97,8 +82,6 @@ def calorieCalcAtualiza(request):
             if a.id == int(b):
                 base_read.append([a.id,a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
 
-    print('--------------> ', base_read)
-
     NutriCalcs = get_object_or_404(NutriCalc, pk=read_id)
     form = NutriCalcForm(instance=NutriCalcs)
 
@@ -112,16 +95,6 @@ def calorieCalcAtualiza(request):
             return redirect('/Patient_List')
         else:
             return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read})
-                #return render(request,'diet/editar-calorias.html', {'form':form, 'NutriCalcs':NutriCalcs, 'NutriForm':NutriForm, 'Bases':Bases, 'base_read':base_read})
 
     else:
         return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read})
-        #return render(request,'diet/editar-calorias.html', {'form':form, 'NutriCalcs':NutriCalcs, 'NutriForm':NutriForm, 'Bases':Bases, 'base_read':base_read})
-
-    #Bases = Base.objects.filter(id=ID)
-    #Bases = Base.objects.all().order_by('food_name')
-    #LdProjs = LdProj.objects.filter(proj_name_id=id_proj)
-    
-
-    #return redirect('/calorie_Calc_Atualiza', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read})
-    return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read})
