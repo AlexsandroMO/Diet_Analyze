@@ -3,6 +3,27 @@
   width: auto;
 }
 
+
+.column-format{
+  width: 80px;
+  text-align: center;
+}
+
+.editable-field{
+  width: 100px;
+  text-align: center;
+
+}
+
+.editable-field-input{
+  width: auto;
+  height: 25px;
+}
+
+
+/*white-space: nowrap;*/
+
+
 /*
 .row{
   padding-left: 50px;
