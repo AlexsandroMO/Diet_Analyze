@@ -12,8 +12,8 @@
 
       <ul class="object-tools">
         <li>
-          <a href="/admin/project_control/documentmodel/add/" class="addlink">
-            Add document model
+          <a href="/admin/diet/anamnesi/add/" class="addlink">
+            Add patient
           </a>
         </li>
       </ul>
@@ -65,7 +65,7 @@
                     
                   </tr>
                 </thead>
-                
+                 
                 <tbody>
                   {% csrf_token %}
                   {% for item in Anamnesis %}
@@ -73,13 +73,12 @@
                     <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="{{item.id}}"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
                         <!--admin/diet/base/{{item.id}}/change/-->
-                    <td class="field-doc_code nowrap"><a href="Edit_Calorie_Calc/{{item.id}}">{{item.patient_name}}</a></td>
+                    <td class="field-doc_code nowrap"><a href="admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td>
                     <!-- <td class="field-doc_code nowrap"><a href="/admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td> -->
-                   
                     <td class="field-doc_code nowrap">{{item.gener}}</td>
                     <td class="field-doc_code nowrap">{{item.age_date}}</td>
                     <td class="field-doc_code nowrap">{{item.cel}}</td>
-                    <td class="field-doc_code nowrap">{{item.id}}</td>
+                    <td class="field-doc_code nowrap">{{item.email}}</td>
                     
                   </tr>
                 </div>

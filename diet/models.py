@@ -102,7 +102,7 @@ class Anamnesi(models.Model): #ANAMNESE
     age_date = models.DateField(blank=True, null=True, verbose_name='DATA DE NASCIMENTO')
     gener = models.ForeignKey(Gender, on_delete=models.CASCADE, verbose_name='GÊNERO')
     marital_st = models.ForeignKey(MaritalStatus, on_delete=models.CASCADE, verbose_name='ESTADO CIVIL')
-    sons = models.DecimalField(max_digits=2, decimal_places=0, blank=True, null=False, verbose_name='FILHOS')
+    sons = models.DecimalField(max_digits=2, decimal_places=0, verbose_name='FILHOS')
     schooling = models.ForeignKey(Schooling, on_delete=models.CASCADE, blank=True, null=False, verbose_name='ESCOLARIDADE')
     profession = models.CharField(max_length=255, blank=True, null=False, verbose_name='PROFISSÃO')
     #----------------------------------------------Endereço------------------------------------

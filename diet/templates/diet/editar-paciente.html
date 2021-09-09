@@ -1,0 +1,76 @@
+<link rel="stylesheet" type="text/css" href="/static/admin/css/changelists.css">
+
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+  <!-- Content -->
+  <div id="content" class="colM">
+  
+      <h1>Change project</h1>
+      <h2>{{Projects.project_name}}</h2>
+      <div id="content-main">
+  
+          <ul class="object-tools">
+              <li>
+                  <a href="/admin/project_control/project/2/history/" class="historylink">History</a>
+              </li>
+          </ul>
+  
+          <form method="post" id="project_form"> <!-- novalidate><input type="hidden" name="csrfmiddlewaretoken" value="dOPAnnfuDM96qfkRYSYyxpWCgOkAtdgoMIFLIQ7LaAfyBAGFxZy8qOodJiBnZzKA"> --> 
+              <div>
+
+                'patient_name','cpf','age_date','gener','marital_st','sons','schooling','profession','cep','street','number',
+        'district','city','state','cel','email','consult_motivation','leisure_habits','food_allergies','urinary_habits','bowel_habits',
+        'pathologies_symptoms','stress','headache','frequent_infections','abdominal_pain','digestion','skin_nail_hair','sleep',
+        'time_feel_hungry','essential_foods','candy_ingestion','ingestion_snacks_frying'
+                  <fieldset class="module aligned ">
+                      {% csrf_token %}
+                      <div class="form-row field-project_name">
+                          <div>
+                              <label class="required" for="patient_name">Nome do Paciente:</label>
+                              <input type="text" name="project_name" value="{{Patient.patient_name}}" class="vTextField" maxlength="255" required id="{{Patient.id}}">
+                          </div>
+                      </div>
+  
+                      <div class="form-row field-company">
+                          <div>
+                              <label class="required" for="id_company">CPF:</label>
+                              <input type="text" name="company" value="{{Patient.cpf}}" class="vTextField" maxlength="255" required id="{{Patient.id}}">
+                          </div>
+                      </div>
+  
+                      <div class="form-row field-code">
+                          <div>
+                              <label class="required" for="id_code">Aniversário:</label>
+                              <input type="text" name="code" value="{{Patient.age_date}}" class="vTextField" maxlength="255" required id="{{Patient.id}}">
+                          </div>
+                      </div>
+  
+                      <div class="form-row field-code">
+                        <div>
+                            <label class="required" for="id_code">Gênero:</label>
+                            <input type="text" name="code" value="{{Patient.gener}}" class="vTextField" maxlength="255" required id="{{Patient.id}}">
+                        </div>
+                      </div>
+
+                      <div class="form-row field-comments">
+                        <div>
+                            <label class="required" for="id_comments">Comments:</label>
+                            <textarea name="comments" value="{{Patient.gener}}" cols="40" rows="10" class="vLargeTextField" required id="Patient.id">{{Patient.gener}}</textarea>
+                        </div>
+                    </div>
+  
+                  </fieldset>
+  
+  <div class="submit-row">
+  
+      <input type="submit" value="Save" class="default" name="_save">
+      <p class="deletelink-box"><a href="#" class="deletelink">Back</a></p>
+  
+  </div>
+  </div>
+
+
+{% endblock %}

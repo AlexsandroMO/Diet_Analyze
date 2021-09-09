@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Base, Anamnesi, NutriCalc
-from .forms import NutriCalcForm
+from .forms import NutriCalcForm, AnamnesiForm
 from django.contrib import messages
 #import DB_Access as db_access
 from datetime import datetime
@@ -27,6 +27,29 @@ def patientList(request):
     return render(request,'diet/clientes.html', {'stauts_body':stauts_body, 'Anamnesis':Anamnesis})    
 
 
+def editPatient(request, id):
+    stauts_body = ''
+
+    Patient = get_object_or_404(Anamnesi, pk=id)
+    form = AnamnesiForm(instance=Patient )
+
+    print(form)
+
+    if(request.method == 'POST'):
+        form = AnamnesiForm(request.POST, instance=Patient)
+
+        if(form.is_valid()):
+            #if Projects.policy == '0':
+                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
+            Patient.save()
+            return redirect('/Patient_List')
+        else:
+            return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
+
+    else:
+        return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
+
+
 def calorieCalc(request):
     stauts_body = '',
 
@@ -35,7 +58,7 @@ def calorieCalc(request):
 
     ID = int(POST['_selected_action'][0])
 
-    Bases = Base.objects.all().order_by('food_name')
+    Bases = Base.objects.all()
     NutriCalcs = NutriCalc.objects.filter(patient_name_id=ID)
     read_id = ID
 
