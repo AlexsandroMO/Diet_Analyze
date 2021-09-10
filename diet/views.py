@@ -10,7 +10,7 @@ from datetime import datetime
 #from geeks.models import GeeksModel
 #import decimal
 
-def home(request):
+def home(request): 
     #data_atual = datetime.today()
     #data_atual = datetime.strptime(str(data_atual)[:10], '%Y-%m-%d').date()
 
@@ -27,29 +27,6 @@ def patientList(request):
     return render(request,'diet/clientes.html', {'stauts_body':stauts_body, 'Anamnesis':Anamnesis})    
 
 
-def editPatient(request, id):
-    stauts_body = ''
-
-    Patient = get_object_or_404(Anamnesi, pk=id)
-    form = AnamnesiForm(instance=Patient )
-
-    print(form)
-
-    if(request.method == 'POST'):
-        form = AnamnesiForm(request.POST, instance=Patient)
-
-        if(form.is_valid()):
-            #if Projects.policy == '0':
-                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
-            Patient.save()
-            return redirect('/Patient_List')
-        else:
-            return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
-
-    else:
-        return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
-
-
 def calorieCalc(request):
     stauts_body = ''
 
@@ -57,35 +34,64 @@ def calorieCalc(request):
     print(POST)
 
     ID = int(POST['_selected_action'][0])
-
-    Bases = Base.objects.all()
-    NutriCalcs = NutriCalc.objects.filter(patient_name_id=ID)
+    #ID = POST['_food_name']
+    
+    Bases = Base.objects.all().order_by('food_name')
+    NutriCal = NutriCalc.objects.filter(patient_name_id=ID)
     read_id = ID
 
-    return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs, 'read_id':read_id})
+    bases_read = []
+    for n in NutriCal:
+        print(n.id, n.food_name_id)
+        for a in Bases:
+            if a.id == n.food_name_id:
+                bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
+
+    print(bases_read)
+
+    return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
+
+
+
+def editPatientCalc(request):
+    stauts_body = ''
+
+    POST = dict(request.POST)
+    print(POST)
+
+    ID = POST['_food-name']
+    read_id = POST['_patient_read'][0]
+
+    Bases = Base.objects.all().order_by('food_name')
+    NutriCal = NutriCalc.objects.filter(patient_name_id=read_id)
+
+    return render(request,'diet/editar-calorias.html', {'stauts_body':stauts_body, 'Bases':Bases, 'NutriCal':NutriCal, 'read_id':read_id})
 
 
 def calorieCalcAtualiza(request):
     stauts_body = ''
 
     POST = dict(request.POST)
+    print(POST)
 
-    ID = POST['food_name']
     read_id = POST['_patient_read'][0]
     id_nutri = POST['id_nutri']
+    #id_nutri = ['1','3']
 
     Bases = Base.objects.all().order_by('food_name')
     NutriCal = NutriCalc.objects.filter(patient_name_id=read_id)
 
     cont = 0
     for a in NutriCal:
-        print(a.patient_name)
-        NutriCalcs = get_object_or_404(NutriCalc, pk=id_nutri[cont])
-        NutriCalcs.food_name_id = int(ID[cont])
+        print(a.patient_name, a.id)
+        NutriCalcs = get_object_or_404(NutriCalc, pk=a.id)
+        #print('>>>>>>>>>>>>>>>>>>>>>', a.food_name_id, int(id_nutri[cont]))
+        NutriCalcs.food_name_id = int(id_nutri[cont])
         NutriCalcs.save()
         cont += 1
 
-    return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCal':NutriCal})
+    return redirect('/Patient_List')
+    #return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'NutriCal':NutriCal})
 
 
 
@@ -111,7 +117,36 @@ def calorieCalcAtualiza(request):
         #a.food_name = int(ID[b])
 
         #for a in range(0, len(ID)):
-    '''for b in range(0, len(ID)):
+    '''
+    
+    
+    
+    
+def editPatientxx(request, id):
+    stauts_body = ''
+
+    Patient = get_object_or_404(Anamnesi, pk=id)
+    form = AnamnesiForm(instance=Patient )
+
+    print(form)
+
+    if(request.method == 'POST'):
+        form = AnamnesiForm(request.POST, instance=Patient)
+
+        if(form.is_valid()):
+            #if Projects.policy == '0':
+                #Projects.policy = '{}000000000000{}'.format(data_atual, length)
+            Patient.save()
+            return redirect('/Patient_List')
+        else:
+            return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
+
+    else:
+        return render(request,'diet/editar-paciente.html', {'form':form, 'Patient':Patient})
+    
+    
+    
+    for b in range(0, len(ID)):
         if a.id == int(ID[b]):
             base_read.append([a.id,a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
             print('--------------------------------------- foi até aqui')

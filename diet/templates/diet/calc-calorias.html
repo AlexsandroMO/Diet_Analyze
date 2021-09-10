@@ -20,22 +20,8 @@
 
       <div class="module" id="changelist">
         <div class="changelist-form-container">
-          <form action="{% url 'calorie-calc-atualiza' %}" method="POST">
-            <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
-  
-            <div class="actions">
-                <label>Action:
-                  <select name="action" required>
-                    <option value="" selected>---------</option>
-                   
-                      <option value="0">Atualizar</option>
-                    
-                  </select>
-                </label>
-                  <input type="hidden" name="select_across" value="0" class="select-across">
-                <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
-                <span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>
-              </div>
+          <form action="{% url 'edit-patient-calc' %}" method="POST">
+            <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc"> 
             <div class="results">
               <table id="result_list">
                 <thead>
@@ -44,100 +30,92 @@
                       <div class="text"><span><input type="checkbox" id="action-toggle"></span></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=0">ALIMENTO</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-format_doc">
                       <div class="text"><a href="?o=1">QT</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=2">PTN</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_code">
                       <div class="text"><a href="?o=3">GLI</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-documment_name">
                       <div class="text"><a href="?o=4">LIP</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=4">Ca</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=5">P</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=6">Fe</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=7">VIT-A</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=8">TIA</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=9">RIBO</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=10">NIA</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=11">VIT-C</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="column-format">
+                    <th scope="col" class="sortable column-doc_type_page">
                       <div class="text"><a href="?o=12">FIBRA</a></div>
                       <div class="clear"></div>
                     </th>
- 
+
                   </tr>
                 </thead>
-                <input type="hidden" name="_patient_read" value="{{read_id}}">
-                <tbody>
+                <tbody> 
+                  
                   {% csrf_token %}
-                  {% for item in NutriCalcs %}
+                  <input type="hidden" name="_patient_read" value="{{read_id}}">
+                  {% for item in bases_read %}
                   <tr>
                     <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="0"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
-                    <td class="field-doc_name nowrap">
-                      {% csrf_token %}
-                        <select name="food_name" class="editable-field-input" required id="id_food_name">
-                          <option value="{{item.id}}">{{item.food_name}}</option>
-                          {% for items in Bases %}
-                          <option value="{{items.id}}">{{items.food_name}}</option>
-                          {% endfor %}
-                        </select>
-                    </td>
-                    {{NutriCalcs.food_name}}
-                    <input type="hidden" value="{{item.id}}" name="id_nutri" class="editable-field">
-                    <td><input value="{{item.qt_g}}" name="qt_g" class="editable-field"> <!--required id="id_ptn"--></td>
-                    <td><input value="{{item.ptn}}" name="ptn" class="editable-field"></td>
-                    <td><input value="{{item.gli}}" name="gli" class="editable-field"></td>
-                    <td><input value="{{item.lip}}" name="lip" class="editable-field"></td>
-                    <td><input value="{{item.ca}}" name="ca" class="editable-field"></td>
-                    <td><input value="{{item.p}}" name="p" class="editable-field"></td>
-                    <td><input value="{{item.fe}}" name="fe" class="editable-field"></td>
-                    <td><input value="{{item.vit_a}}" name="vit_a" class="editable-field"></td>
-                    <td><input value="{{item.tia}}" name="tia" class="editable-field"></td>
-                    <td><input value="{{item.ribo}}" name="ribo" class="editable-field"></td>
-                    <td><input value="{{item.nia}}" name="nia" class="editable-field"></td>
-                    <td><input value="{{item.vit_c}}" name="vit_c" class="editable-field"></td>
-                    <td><input value="{{item.fiber}}" name="fiber" class="editable-field"></td>
-                  </tr>
-                </div>
-                  {% endfor %}
+                      <input type="hidden" name="_food-name" value="{{item.food_name_id}}">
+                      <td name="_food-name" value="{{item.food_name_id}}">{{item.0}}</td>
+                      <td>{{item.1}}</td>
+                      <td>{{item.2}}</td>
+                      <td>{{item.3}}</td>
+                      <td>{{item.4}}</td>
+                      <td>{{item.5}}</td>
+                      <td>{{item.6}}</td>
+                      <td>{{item.7}}</td>
+                      <td>{{item.8}}</td>
+                      <td>{{item.9}}</td>
+                      <td>{{item.10}}</td>
+                      <td>{{item.11}}</td>
+                      <td>{{item.12}}</td>
+                      <td>{{item.13}}</td>
+                    </tr>
 
+                  {% endfor %}
+          
                 </tbody>
               </table>
             </div>
@@ -146,7 +124,15 @@
               {{docs_count}} documents found
             </p>
 
-          </form>
+          <div class="submit-row">
+
+            <input type="submit" value="Edit" class="default" name="_save">
+            <p class="deletelink-box"><a href="{% url 'patient-list' %}" class="deletelink">Back</a></p>
+        
+        </div>
+        </div>
+
+
         </div>
     </div>
 

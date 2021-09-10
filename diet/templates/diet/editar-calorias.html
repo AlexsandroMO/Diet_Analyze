@@ -22,18 +22,6 @@
         <div class="changelist-form-container">
           <form action="{% url 'calorie-calc-atualiza' %}" method="POST">
             <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
-  
-            <div class="actions">
-                <label>Action:
-                  <select name="action" required>
-                    <option value="" selected>---------</option>
-                      <option value="0">Atualizar</option>
-                  </select>
-                </label>
-                  <input type="hidden" name="select_across" value="0" class="select-across">
-                <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
-                <span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>
-              </div>
             <div class="results">
               <table id="result_list">
                 <thead>
@@ -46,159 +34,29 @@
                       <div class="text"><a href="?o=0">ALIMENTO</a></div>
                       <div class="clear"></div>
                     </th>
-                    <th scope="col" class="sortable column-format_doc">
-                      <div class="text"><a href="?o=1">QT</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=2">PTN</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_code">
-                      <div class="text"><a href="?o=3">GLI</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-documment_name">
-                      <div class="text"><a href="?o=4">LIP</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=4">Ca</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=5">P</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=6">Fe</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=7">VIT-A</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=8">TIA</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=9">RIBO</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=10">NIA</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=11">VIT-C</a></div>
-                      <div class="clear"></div>
-                    </th>
-                    <th scope="col" class="sortable column-doc_type_page">
-                      <div class="text"><a href="?o=12">FIBRA</a></div>
-                      <div class="clear"></div>
-                    </th>
-
                   </tr>
                 </thead>
                 <input type="hidden" name="_patient_read" value="{{read_id}}" class="action-select">
                 <tbody>
+
                   {% csrf_token %}
-                  {% for items in NutriForm %}
-                  {% for item in base_read %}
+                  {% for items in NutriCal %}
+
                   <tr>
                     <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="0"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
-                        <!--admin/diet/base/{{item.id}}/change/-->
-                    <td class="field-doc_name nowrap">
-                        <input type="text" name="project_name" value="{{item.1}}" class="vTextField" maxlength="255" required id="{item.id}}">
-                    </td>
                         <td class="field-doc_name nowrap">
                       {% csrf_token %}
-                        <select name="base_name" required id="id_base">
-                            <option value="00">---</option>
+                        <select name="id_nutri">
+                          <option value="items.food_name_id">{{items.food_name}}</option>
                             {% for it in Bases %}
                             <option value="{{it.id}}">{{it.food_name}}</option>
                             {% endfor %}
                         </select>
                     </td>
-
-                    <td class="field-doc_name nowrap">
-                        <input type="text" name="project_name" value="{{item.2}}" class="vTextField" maxlength="255" required id="{{NutriCalcs.id}}">
-                    </td>
-                    <td class="field-doc_name nowrap">
-                        <input type="text" name="project_name" value="{{item.3}}" class="vTextField" maxlength="255" required id="{{NutriCalcs.id}}">
-                    </td>
-                    <td class="field-doc_name nowrap">
-                        <input type="text" name="project_name" value="{{item.4}}" class="vTextField" maxlength="255" required id="{{NutriCalcs.id}}">
-                    </td>
-                    <td class="field-doc_name nowrap">
-                        <input type="text" name="project_name" value="{{item.5}}" class="vTextField" maxlength="255" required id="{{NutriCalcs.id}}">
-                    </td>
-
-                    <td class="field-doc_name nowrap">
-                        <select name="qt_g" required id="id_qt_g">
-                            <option value="2">{{NutriCalcs.qt_g}}</option>
-                        </select>
-                        </td>
-                    <td class="field-doc_name nowrap">
-                        <select name="ptn" required id="id_ptn">
-                          <option value="3">{{item.ptn}}</option>
-                        </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                        <select name="ptn" required id="id_ptn">
-                          <option value="3">{{item.gli}}</option>
-                        </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                        <select name="ptn" required id="id_ptn">
-                          <option value="3">{{item.lip}}</option>
-                        </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.ca}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.p}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.fe}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.vit_a}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.tia}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.vit_a}}</option>
-                      </select>
-                    </td>
-                    <td class="field-doc_name nowrap">
-                      <select name="ptn" required id="id_ptn">
-                        <option value="3">{{item.vit_a}}</option>
-                      </select>
-                    </td>
-                    <td class="field-format_docnowrap">{{item.tia}} </td>
-                    <td class="field-format_docnowrap">{{item.ribo}} </td>
-                    <td class="field-format_docnowrap">{{item.nia}} </td>
-                    <td class="field-format_docnowrap">{{item.vit_c}} </td>
-                    <td class="field-format_docnowrap">{{item.fiber}} </td>
                   </tr>
                 </div>
-                  {% endfor %}
+        
                   {% endfor %}
 
                 </tbody>
@@ -209,8 +67,15 @@
               {{docs_count}} documents found
             </p>
 
+
+            <div class="submit-row">
+              <input type="submit" value="Save" class="default" name="_save">
+              <p class="deletelink-box"><a href="{% url 'patient-list' %}" class="deletelink">Back</a></p>
+            </div>
+
           </form>
         </div>
+
     </div>
 
 
