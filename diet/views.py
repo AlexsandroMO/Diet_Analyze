@@ -2,13 +2,14 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
-from .models import Base, Anamnesi, NutriCalc
+from .models import Base, Anamnesi, NutriCalc, Anthropometric
 from .forms import AnamnesiForm #NutriCalcForm, 
 from django.contrib import messages
 #import DB_Access as db_access
 from datetime import datetime
 #from geeks.models import GeeksModel
 #import decimal
+
 
 def home(request): 
     #data_atual = datetime.today()
@@ -33,25 +34,30 @@ def calorieCalc(request):
     POST = dict(request.POST)   
     print(POST)
 
-    ID = int(POST['_selected_action'][0])
-    #ID = POST['_food_name']
+    ID = int(POST['_selected_patient'][0])
+    action = POST['action'][0]
     
+    Metrics = Anthropometric.objects.all().order_by('patient_name')
     Bases = Base.objects.all().order_by('food_name')
     NutriCal = NutriCalc.objects.filter(patient_name_id=ID)
     read_id = ID
 
-    #if anthropometric or nutri
+    if action == '0':
+        bases_read = []
+        for n in NutriCal:
+            print(n.id, n.food_name_id)
+            for a in Bases:
+                if a.id == n.food_name_id:
+                    bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
 
-    bases_read = []
-    for n in NutriCal:
-        print(n.id, n.food_name_id)
-        for a in Bases:
-            if a.id == n.food_name_id:
-                bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
+        print(bases_read)
 
-    print(bases_read)
+        return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
 
-    return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
+    if action == '1':
+
+
+        return render(request,'diet/metrics-list.html', {'stauts_body':stauts_body, 'Metrics':Metrics, 'read_id':read_id})
 
 
 

@@ -31,7 +31,7 @@
                       <option value="1">Anthropometric Paciente</option>
                   </select>
                 </label>
-                  <input type="hidden" name="select_across" value="0" class="select-across">
+                  <!--<input type="hidden" name="select_across" value="0" class="select-across">-->
                 <button type="submit" class="button" title="Run the selected action" name="index" value="0">Go</button>
                 <!--<span class="action-counter" data-actions-icnt="{{docs_count}}"> 0 of {{docs_count}} selected</span>-->
               </div>
@@ -71,7 +71,7 @@
                   {% csrf_token %}
                   {% for item in Anamnesis %}
                   <tr>
-                    <td class="action-checkbox"><input type="checkbox" name="_selected_action" value="{{item.id}}"
+                    <td class="action-checkbox"><input type="checkbox" name="_selected_patient" value="{{item.id}}"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
                         <!--admin/diet/base/{{item.id}}/change/-->
                     <td class="field-doc_code nowrap"><a href="admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td>
