@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Base, Anamnesi, NutriCalc
-from .forms import NutriCalcForm, AnamnesiForm
+from .forms import AnamnesiForm #NutriCalcForm, 
 from django.contrib import messages
 #import DB_Access as db_access
 from datetime import datetime
@@ -39,6 +39,8 @@ def calorieCalc(request):
     Bases = Base.objects.all().order_by('food_name')
     NutriCal = NutriCalc.objects.filter(patient_name_id=ID)
     read_id = ID
+
+    #if anthropometric or nutri
 
     bases_read = []
     for n in NutriCal:

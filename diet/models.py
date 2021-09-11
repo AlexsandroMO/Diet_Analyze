@@ -185,7 +185,7 @@ class NutriCalc(models.Model): #Calculo Nutricional
     patient_name = models.ForeignKey(Anamnesi, on_delete=models.CASCADE, verbose_name='PACIENTE')
     food_name = models.ForeignKey(Base, on_delete=models.CASCADE, verbose_name='ALIMENTO')
     #food_name = models.CharField(max_length=255, verbose_name='ALIMENTOS')
-    qt_g = models.DecimalField(max_digits=3, decimal_places=0, blank=True, null=True, verbose_name='QT')
+    '''qt_g = models.DecimalField(max_digits=3, decimal_places=0, blank=True, null=True, verbose_name='QT')
     ptn = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='PTN')
     gli = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='GLI')
     lip = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='LIP')
@@ -197,7 +197,7 @@ class NutriCalc(models.Model): #Calculo Nutricional
     ribo = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='RIBO')
     nia = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='NIA')
     vit_c = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='VIT-C')
-    fiber = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='FIBRA')
+    fiber = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='FIBRA')'''
 
     #def __str__(self):
         #return self.food_name

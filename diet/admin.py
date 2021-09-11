@@ -37,8 +37,8 @@ class AnthropometricAdmin(admin.ModelAdmin):
 
 
 class NutriCalcAdmin(admin.ModelAdmin):
-    fields = ('patient_name','food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
-    list_display = ('id','patient_name','food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
+    fields = ('patient_name','food_name')#,'qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
+    list_display = ('id','patient_name','food_name') #,'qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
     
 
 class NutriCalcResultAdmin(admin.ModelAdmin):
