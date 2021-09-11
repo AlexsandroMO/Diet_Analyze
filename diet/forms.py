@@ -1,12 +1,14 @@
 from django import forms
-from .models import NutriCalc, Anamnesi
+from .models import Anamnesi, Anthropometric
 
 
 '''class NutriCalcForm(forms.ModelForm):
     class Meta:
         model = NutriCalc
-        fields = ('food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
+        fields = ('food_name','qt_g')
 '''
+
+
 
 class AnamnesiForm(forms.ModelForm):
     class Meta:
@@ -17,4 +19,9 @@ class AnamnesiForm(forms.ModelForm):
         'time_feel_hungry','essential_foods','candy_ingestion','ingestion_snacks_frying',)
 
 
+class AnthropometricForm(forms.ModelForm):
+    class Meta:
+        model = Anthropometric
+        fields = ('patient_name', 'weight', 'pu', 'pt', 'height', 'imc', 'circ_arm', 'circ_waist', 'circ_abdomen', 'circ_hip', 'pct',
+        'cmb','edema', 'age_range')
 

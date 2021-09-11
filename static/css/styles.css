@@ -8,12 +8,14 @@
   width: 80px;
   text-align: center;
 }
-
+/* 
 .editable-field{
-  width: 100px;
-  text-align: center;
+  width: 500px;
 
-}
+  padding-left: 10px;
+  display: inline-block;
+
+} */
 
 .editable-field-input{
   width: auto;
