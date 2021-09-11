@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Base, Anamnesi, NutriCalc, Anthropometric
-from .forms import AnamnesiForm #NutriCalcForm, 
+from .forms import AnamnesiForm, AnthropometricForm
 from django.contrib import messages
 #import DB_Access as db_access
 from datetime import datetime
@@ -28,7 +28,18 @@ def patientList(request):
     return render(request,'diet/clientes.html', {'stauts_body':stauts_body, 'Anamnesis':Anamnesis})    
 
 
-def calorieCalc(request):
+def choseEdit(request, id):
+    stauts_body = ''
+
+    ID = id  
+    Anamnesis = Anamnesi.objects.filter(id=ID)
+
+    return render(request,'diet/chose-edictions.html', {'stauts_body': stauts_body, 'Anamnesis':Anamnesis})    
+
+
+
+
+def dataPatient(request):
     stauts_body = ''
 
     POST = dict(request.POST)   
@@ -43,6 +54,12 @@ def calorieCalc(request):
     read_id = ID
 
     if action == '0':
+        return redirect('/admin/diet/anamnesi/{}/change/'.format(ID))
+
+    elif action == '1':
+        return redirect('/admin/diet/anthropometric/{}/change/'.format(ID))
+
+    elif action == '2':
         bases_read = []
         for n in NutriCal:
             print(n.id, n.food_name_id)
@@ -50,14 +67,7 @@ def calorieCalc(request):
                 if a.id == n.food_name_id:
                     bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
 
-        print(bases_read)
-
         return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
-
-    if action == '1':
-
-
-        return render(request,'diet/metrics-list.html', {'stauts_body':stauts_body, 'Metrics':Metrics, 'read_id':read_id})
 
 
 
@@ -117,17 +127,26 @@ def calorieCalcAtualiza(request):
 
 
 
-
-
-
-
-
-        #a.food_name = int(ID[b])
-
-        #for a in range(0, len(ID)):
-    '''
+'''
     
-    
+def editAnamnesi(request, id):
+
+    PatientAnamnesis = get_object_or_404(Anamnesi, pk=id)
+    form = AnamnesiForm(instance=PatientAnamnesis)
+
+    if request.method == 'POST':
+        form = AnamnesiForm(request.POST, instance=PatientAnamnesis)
+
+        if form.is_valid():
+            PatientAnamnesis.save()
+            return redirect('/')
+
+        else:
+            return render(request, 'diet/editar-anamnesi.html', {'form': form, 'PatientAnamnesis': PatientAnamnesis})
+
+    else:
+        return render(request, 'diet/editar-anamnesi.html', {'form': form, 'PatientAnamnesis': PatientAnamnesis})
+
     
     
 def editPatientxx(request, id):
@@ -177,13 +196,9 @@ def editPatientxx(request, id):
                 #return redirect('/Patient_List')
                 print('>>>>>>>>>>>>>>>>>>>>>>> Feito')
                 
-            return redirect('/Patient_List')'''
-            #return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read, 'form':form})
-                #else:
-                    #return render(request,'diet/calc-calorias-atualiza.html', {'stauts_body':stauts_body, 'Bases':Bases,'NutriCalcs':NutriCalcs,'base_read':base_read, 'form':form})
-
-    #else:
- 
+            return redirect('/Patient_List')
+            
+'''
 
 
 

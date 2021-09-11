@@ -13,22 +13,23 @@
       <ul class="object-tools">
         <li>
           <a href="/admin/diet/anamnesi/add/" class="addlink">
-            Add patient
+            Add patient anamnesi
           </a>
         </li>
       </ul>
 
       <div class="module" id="changelist">
         <div class="changelist-form-container">
-          <form action="{% url 'calorie-calc' %}" method="POST">
+          <form action="{% url 'data-patient' %}" method="POST">
             <input type="hidden" name="csrfmiddlewaretoken" value="TrZq1xVTK4DlfhkzzIvONc3Ts6xZLlocHA6snRUA3DBaxZStSnCrPYldau5V2ywc">  
   
             <div class="actions">
                 <label>Action:
                   <select name="action" required>
                     <option value="" selected>---------</option>
-                      <option value="0">Nutri Paciente</option>
+                      <option value="0">Anamnesi Paciente</option>
                       <option value="1">Anthropometric Paciente</option>
+                      <option value="2">Nutri Paciente</option>
                   </select>
                 </label>
                   <!--<input type="hidden" name="select_across" value="0" class="select-across">-->
@@ -74,7 +75,7 @@
                     <td class="action-checkbox"><input type="checkbox" name="_selected_patient" value="{{item.id}}"
                         class="action-select"></td>  <!--nowrap: tirar quebra de texto-->
                         <!--admin/diet/base/{{item.id}}/change/-->
-                    <td class="field-doc_code nowrap"><a href="admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td>
+                    <td class="field-doc_code nowrap"><a href="Chose_Edit/{{item.id}}">{{item.patient_name}}</a></td>
                     <!-- <td class="field-doc_code nowrap"><a href="/admin/diet/anamnesi/{{item.id}}/change/">{{item.patient_name}}</a></td> -->
                     <td class="field-doc_code nowrap">{{item.gener}}</td>
                     <td class="field-doc_code nowrap">{{item.age_date}}</td>

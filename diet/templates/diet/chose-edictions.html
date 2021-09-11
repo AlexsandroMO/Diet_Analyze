@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div id="content" class="colM">
+          
+   <h1>Deseja adicionar dados Anthropometrics ao seu Paciente?</h1>
+   
+<!-- <p>Tem certeza de que deseja apagar o anamnesi selecionado? Todos os seguintes objetos e seus itens relacionados serão removidos:</p> -->
+
+   <h2>Objetivo</h2>
+
+   <ul>
+      <li>Criar Anthropometric para: <a href="/admin/diet/anamnesi/{{Anamnesis.0.id}}/change/">{{Anamnesis.0.patient_name}}</a></li>
+   </ul>
+
+   <!-- <form method="post">-->
+   <form action="/admin/diet/anthropometric/add/" method="POST">
+      <input type="hidden" name="csrfmiddlewaretoken" value="jmqo7ABx0fRFVRIJ3PrnwjKu8g739BRd7o2VsVE0DuSBKmB0VyqAHdaUFcshIMI5">
+      <div>
+         <input type="hidden" name="_selected_action" value="{{Anamnesis.0.id}}">
+         <input type="hidden" name="action" value="delete_selected">
+         <input type="hidden" name="post" value="yes">
+         <input type="submit" value="Sim, Desejo">
+         <a href="{% url 'patient-list' %}" class="button cancel-link">Não, me leve de volta</a>
+      </div>
+   </form>
+
+   <br class="clear">
+   </div>
+
+ {% endblock %}
