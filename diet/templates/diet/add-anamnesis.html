@@ -4,7 +4,12 @@
 <div class="content">
 
 	<div id="content" class="colM">
-		<h1>Add Anamnesi</h1>
+		{% if status_action == True %}
+			<h1>Edite Anamnesi</h1>
+		{% else %}
+			<h1>Add Anamnesi</h1>
+		{% endif %}
+
 		<div id="content-main">
 			<form method="post" id="anthropometric_form" novalidate="">
 			<input type="hidden" name="csrfmiddlewaretoken" value="gfZXu2ufGTvpWO8sUqC1xh7ljzlg1UwYFjLvRCuZlBSZppihlVmNyUJAnKoYiROL">
@@ -129,7 +134,7 @@
 				</div>
 
 				<div class="submit-row" >
-						<h2 id="ajust-row"><strong>Contato</strong></h2>
+						<h2 id="ajust-row"><strong>CONTATO</strong></h2>
 				</div>
 
 				<div class="form-row field-age_range">
@@ -147,7 +152,7 @@
 				</div>
 
 				<div class="submit-row" >
-					<h2 id="ajust-row"><strong>DADOS DO PACIENTE</strong></h2>
+					<h2 id="ajust-row"><strong>ANAMNESI</strong></h2>
 				</div>
 
 				<div class="form-row field-age_range">
@@ -171,11 +176,82 @@
 					</div>
 				</div>
 
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Hábitos Urinários:</label>
+						{{form.urinary_habits}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Hábitos Intestinais:</label>
+						{{form.bowel_habits}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Cirurgias / Ptologias / Sintomas:</label>
+						{{form.pathologies_symptoms}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Estresse / Depressão:</label>
+						{{form.stress}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Enxaqueca / Dor de Cabeça:</label>
+						{{form.headache}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Infecções Frequêntes:</label>
+						{{form.frequent_infections}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Dor Abdominal:</label>
+						{{form.abdominal_pain}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Digestão:</label>
+						{{form.digestion}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Pele / Unha / Cabelo:</label>
+						{{form.skin_nail_hair}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Sono:</label>
+						{{form.sleep}}
+					</div>
+				</div>
+
+
+
 		</fieldset>
 		<div class="submit-row">
 			<input type="submit" value="Salvar" class="default" name="_save">
-			<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
-			<input type="submit" value="Salvar e continuar editando" name="_continue">
+			<a href="{% url 'patient-list' %}"><input type="button" class="btn btn-secondary" value="Voltar"></a>
 		</div>
 		</div>
 	</form>

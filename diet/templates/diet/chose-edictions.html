@@ -10,21 +10,14 @@
    <h2>Objetivo</h2>
 
    <ul>
-      <li>Criar Anthropometric para: <a href="/admin/diet/anamnesi/{{Anamnesis.0.id}}/change/">{{Anamnesis.0.patient_name}}</a></li>
+      <li>Criar Anthropometric para: <a href="/admin/diet/anamnesi/{{Anamnesis.0.id}}/change/">{{Anamnesis.0.patient_name}}?</a></li>
    </ul>
 
-   <!-- <form method="post">-->
-   <form action="{% url 'add_metric' %}" method="POST">
-      {% csrf_token %}
-      <div>
-         <input type="hidden" name="_selected_action" value="{{Anamnesis.0.id}}">
-         <input type="hidden" name="action" value="delete_selected">
-         <input type="hidden" name="post" value="yes">
-         <input type="submit" value="Sim, Desejo">
-         <a href="{% url 'patient-list' %}" class="button cancel-link">Não, me leve de volta</a>
-      </div>
-   </form>
-
+   <div>
+      <a href="{% url 'add-metric' %}"><input type="submit" value="Sim, Desejo"></a>
+      <a href="{% url 'patient-list' %}" class="button cancel-link">Não, me leve de volta</a>
+   </div>
+   
    <br class="clear">
    </div>
 

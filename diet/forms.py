@@ -1,12 +1,7 @@
 from django import forms
-from .models import Anamnesi, Anthropometric
+from .models import Anamnesi, Anthropometric, NutriCalc
 
 
-'''class NutriCalcForm(forms.ModelForm):
-    class Meta:
-        model = NutriCalc
-        fields = ('food_name','qt_g')
-'''
 
 
 
@@ -25,3 +20,8 @@ class AnthropometricForm(forms.ModelForm):
         fields = ('patient_name', 'weight', 'pu', 'pt', 'height', 'imc', 'circ_arm', 'circ_waist', 'circ_abdomen', 'circ_hip', 'pct',
         'cmb','edema', 'age_range')
 
+
+class NutriCalcForm(forms.ModelForm):
+    class Meta:
+        model = NutriCalc
+        fields = ('patient_name','food_name')

@@ -4,7 +4,11 @@
 <div class="content">
 
 	<div id="content" class="colM">
-		<h1>Add anthropometric</h1>
+		{% if status_action == True %}
+			<h1>Edite Anthropometric</h1>
+		{% else %}
+			<h1>Add Anthropometric</h1>
+		{% endif %}
 		<div id="content-main">
 			<form method="post" id="anthropometric_form" novalidate="">
 			<input type="hidden" name="csrfmiddlewaretoken" value="gfZXu2ufGTvpWO8sUqC1xh7ljzlg1UwYFjLvRCuZlBSZppihlVmNyUJAnKoYiROL">
@@ -35,7 +39,7 @@
 
 				<div class="form-row field-weight">
 					<div>
-						<label class="required" for="id_weight">PESO ATUAL:</label>
+						<label class="required" for="id_weight">Peso Atual:</label>
 						{{form.weight}}
 					</div>
 				</div>
@@ -56,7 +60,7 @@
 
 				<div class="form-row field-height">
 						<div>
-								<label class="required" for="id_height">ALTURA:</label>
+								<label class="required" for="id_height">Altura:</label>
 								{{form.height}}
 						</div>
 				</div>
@@ -70,28 +74,28 @@
 
 				<div class="form-row field-circ_arm">
 					<div>
-						<label class="required" for="id_circ_arm">CIRC. BRAÇO:</label>
+						<label class="required" for="id_circ_arm">Circ. Braço:</label>
 						{{form.circ_arm}}
 					</div>
 				</div>
 
 				<div class="form-row field-circ_waist">
 					<div>
-						<label class="required" for="id_circ_waist">CIRC. CINTURA:</label>
+						<label class="required" for="id_circ_waist">Circ. Cintura:</label>
 						{{form.circ_waist}}
 					</div>
 				</div>
 
 				<div class="form-row field-circ_abdomen">
 					<div>
-						<label class="required" for="id_circ_abdomen">CIRC. ABDOMEM:</label>
+						<label class="required" for="id_circ_abdomen">Circ. Abdomem:</label>
 						{{form.circ_abdomen}}
 					</div>
 				</div>
 
 				<div class="form-row field-circ_hip">
 					<div>
-						<label class="required" for="id_circ_hip">CIRC. QUADRIL:</label>
+						<label class="required" for="id_circ_hip">Circ. Quadril:</label>
 						{{form.circ_hip}}
 					</div>
 				</div>
@@ -112,14 +116,14 @@
 
 				<div class="form-row field-edema">
 					<div>
-						<label class="required" for="id_edema">EDEMA:</label>
+						<label class="required" for="id_edema">Edema:</label>
 						{{form.edema}}
 					</div>
 				</div>
 
 				<div class="form-row field-age_range">
 					<div>
-						<label class="required" for="id_age_range">FAIXA ETÁRIA:</label>
+						<label class="required" for="id_age_range">Faixa Etária:</label>
 						{{form.age_range}}
 					</div>
 				</div>
@@ -127,8 +131,7 @@
 		</fieldset>
 		<div class="submit-row">
 			<input type="submit" value="Salvar" class="default" name="_save">
-			<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
-			<input type="submit" value="Salvar e continuar editando" name="_continue">
+			<a href="{% url 'patient-list' %}"><input type="button" class="btn btn-secondary" value="Voltar"></a>
 		</div>
 		</div>
 	</form>

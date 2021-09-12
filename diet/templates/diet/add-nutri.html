@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<body onload="pageAtualyze(read_id)">
+<div class="conten" >
+
+	<div id="content" class="colM">
+          
+		<h1>Adicionar nutri calc</h1>
+		
+		<div id="content-main">
+
+			<form method="post" id="nutricalc_form" novalidate="">
+				<input type="hidden" name="csrfmiddlewaretoken" value="B8a4W8R3z6meSfE5WIVe0CxYggVpNXjOcjz2dmF387rKhDGVsJc5dKmQN479pTry">
+				<div>
+
+				<fieldset class="module aligned ">
+				{% csrf_token %}
+				<div class="form-row field-patient_name">
+				<div>
+					<label class="required" for="id_patient_name">PACIENTE:</label>
+					<div class="related-widget-wrapper">
+						{{form.patient_name}}
+						<a class="related-widget-wrapper-link change-related" id="change_id_patient_name" data-href-template="/admin/diet/anamnesi/__fk__/change/?_to_field=id&amp;_popup=1" title="Alterar anamnesi selecionado">
+							<img src="/static/admin/img/icon-changelink.svg" alt="Modificar"></a>
+							<a class="related-widget-wrapper-link add-related" id="add_id_patient_name" href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1" title="Adicionar outro anamnesi">
+							<img src="/static/admin/img/icon-addlink.svg" alt="Adicionar"></a>
+					</div>  
+					</div> 
+				</div>
+			
+				<div class="form-row field-food_name">
+					<div>
+					<label class="required" for="id_food_name">ALIMENTO:</label>
+					<div class="related-widget-wrapper">
+						{{form.food_name}}
+				<a class="related-widget-wrapper-link change-related" id="change_id_food_name" data-href-template="/admin/diet/base/__fk__/change/?_to_field=id&amp;_popup=1" title="Alterar base selecionado">
+					<img src="/static/admin/img/icon-changelink.svg" alt="Modificar"></a><a class="related-widget-wrapper-link add-related" id="add_id_food_name" href="/admin/diet/base/add/?_to_field=id&amp;_popup=1" title="Adicionar outro base">
+					<img src="/static/admin/img/icon-addlink.svg" alt="Adicionar"></a>
+				</div>
+			</div>	  
+		</div>
+			
+		</fieldset>
+
+		<div class="submit-row">
+			<input type="submit" value="Salvar" class="default" name="_save">
+			<a href="{% url 'patient-list' %}"><input type="button" class="btn btn-secondary" value="Voltar"></a>
+		</div>
+
+		</div>
+		</form>
+	</div>
+
+	<br class="clear">
+	</div>
+
+
+
+	<script>
+
+		function pageAtualyze(read_id){
+			console.log('Entrou!!!!', read_id)
+			let name_patient = read_id;
+			document.getElementById('id_patient_name').value = name_patient;
+		};		
+
+
+		// document.getElementById("myFrame").addEventListener("load", myFunction);
+
+		// function myFunction() {
+		// document.getElementById("demo").innerHTML = "Iframe is loaded.";
+		// }
+
+	</script>
+
+</body>
+
+{% endblock %}

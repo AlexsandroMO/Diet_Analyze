@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.http import HttpResponse
 from .models import Base, Anamnesi, NutriCalc, Anthropometric
-from .forms import AnamnesiForm, AnthropometricForm
+from .forms import AnamnesiForm, AnthropometricForm, NutriCalcForm
 from django.contrib import messages
 #import DB_Access as db_access
 from datetime import datetime
@@ -28,14 +28,29 @@ def patientList(request):
     return render(request,'diet/clientes.html', {'stauts_body':stauts_body, 'Anamnesis':Anamnesis})    
 
 
+def addAnamnesi(request):
+    #patients = get_object_or_404(Paciente, pk=id)
+    if request.method == 'POST':
+        form = AnamnesiForm(request.POST)
+
+        if form.is_valid():
+            patients = form.save(commit=False)
+            patients.save()
+            return redirect('/Patient_List')
+
+    else:
+        form = AnamnesiForm()
+        return render(request, 'diet/add-anamnesis.html', {'form': form})
+
+
 def addMetric(request):
     #patients = get_object_or_404(Paciente, pk=id)
     if request.method == 'POST':
         form = AnthropometricForm(request.POST)
 
         if form.is_valid():
-            pacientes = form.save(commit=False)
-            pacientes.save()
+            patients = form.save(commit=False)
+            patients.save()
             return redirect('/Patient_List')
 
     else:
@@ -43,19 +58,20 @@ def addMetric(request):
         return render(request, 'diet/add-anthropometric.html', {'form': form})
 
 
-def addAnamnesi(request):
+def addNutri(request, id):
     #patients = get_object_or_404(Paciente, pk=id)
+    read_id = str(id)
     if request.method == 'POST':
-        form = AnamnesiForm(request.POST)
+        form = NutriCalcForm(request.POST)
 
         if form.is_valid():
-            pacientes = form.save(commit=False)
-            pacientes.save()
+            patients = form.save(commit=False)
+            patients.save()
             return redirect('/Patient_List')
 
     else:
-        form = AnamnesiForm()
-        return render(request, 'diet/add-anamnesis.html', {'form': form})
+        form = NutriCalcForm()
+        return render(request, 'diet/add-nutri.html', {'form': form, 'read_id ':read_id})
 
 
 def choseEdit(request, id):
@@ -65,7 +81,6 @@ def choseEdit(request, id):
     Anamnesis = Anamnesi.objects.filter(id=ID)
 
     return render(request,'diet/chose-edictions.html', {'stauts_body': stauts_body, 'Anamnesis':Anamnesis})    
-
 
 
 def dataPatient(request):
@@ -83,10 +98,10 @@ def dataPatient(request):
     read_id = ID
 
     if action == '0':
-        return redirect('/admin/diet/anamnesi/{}/change/'.format(ID))
+        return redirect('/Edit_Anamnesi/%s'%(ID))
 
     elif action == '1':
-        return redirect('/admin/diet/anthropometric/{}/change/'.format(ID))
+        return redirect('/Edit_Metric/%s'%(ID))
 
     elif action == '2':
         bases_read = []
@@ -98,6 +113,43 @@ def dataPatient(request):
 
         return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
 
+
+def editAnamnesi(request, id):
+    Patients = get_object_or_404(Anamnesi, pk=id)
+    form = AnamnesiForm(instance=Patients)
+
+    status_action = True
+
+    if request.method == 'POST':
+        form = AnamnesiForm(request.POST, instance=Patients)
+
+        if form.is_valid():
+            Patients.save()
+            return redirect('/Patient_List')
+        else:
+            return render(request, 'diet/add-anamnesis.html', {'form':form, 'Patients':Patients, 'status_action':status_action})
+
+    else:
+        return render(request, 'diet/add-anamnesis.html', {'form':form, 'Patients':Patients, 'status_action':status_action})
+
+
+def editMetric(request, id):
+    Patients = get_object_or_404(Anthropometric, pk=id)
+    form = AnthropometricForm(instance=Patients)
+
+    status_action = True
+
+    if request.method == 'POST':
+        form = AnthropometricForm(request.POST, instance=Patients)
+
+        if form.is_valid():
+            Patients.save()
+            return redirect('/Patient_List')
+        else:
+            return render(request, 'diet/add-anthropometric.html', {'form': form, 'Patients': Patients, 'status_action':status_action})
+
+    else:
+        return render(request, 'diet/add-anthropometric.html', {'form': form, 'Patients': Patients, 'status_action':status_action})
 
 
 def editPatientCalc(request):

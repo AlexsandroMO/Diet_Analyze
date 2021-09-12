@@ -55,16 +55,6 @@ class Schooling(models.Model): #Gênero
     def __str__(self):
         return self.name_school
         
-
-'''class AgeRange(models.Model): #Gênero
-    age = models.CharField(max_length=255, verbose_name='FAIXA ETÁRIA')
-    #Registro de entrada
-    created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
-
-    def __str__(self):
-        return self.age'''
-
     
 class Anamnesi(models.Model): #ANAMNESE
     STATE_NAME = (

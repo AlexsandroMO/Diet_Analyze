@@ -19,11 +19,11 @@ class SchoolingAdmin(admin.ModelAdmin):
 
 
 class AnamnesiAdmin(admin.ModelAdmin):
-    fields = ('patient_name','age_date','gener','marital_st','sons','schooling','profession','cep','street','number','district','city','state','cel','email','consult_motivation',
+    fields = ('patient_name','cpf','age_date','gener','marital_st','sons','schooling','profession','cep','street','number','district','city','state','cel','email','consult_motivation',
     'leisure_habits','food_allergies','urinary_habits','bowel_habits','pathologies_symptoms','stress','headache',
     'frequent_infections','abdominal_pain','digestion','skin_nail_hair','sleep','time_feel_hungry','essential_foods',
     'candy_ingestion','ingestion_snacks_frying')
-    list_display = ('patient_name','age_date','gener','marital_st','sons','schooling','profession','cep','street','number','district','city','state','cel','email','consult_motivation',
+    list_display = ('patient_name','cpf','age_date','gener','marital_st','sons','schooling','profession','cep','street','number','district','city','state','cel','email','consult_motivation',
     'leisure_habits','food_allergies','urinary_habits','bowel_habits','pathologies_symptoms','stress','headache',
     'frequent_infections','abdominal_pain','digestion','skin_nail_hair','sleep','time_feel_hungry','essential_foods',
     'candy_ingestion','ingestion_snacks_frying','created_at','update_at')
