@@ -29,17 +29,33 @@ def patientList(request):
 
 
 def addMetric(request):
+    #patients = get_object_or_404(Paciente, pk=id)
     if request.method == 'POST':
         form = AnthropometricForm(request.POST)
 
         if form.is_valid():
             pacientes = form.save(commit=False)
             pacientes.save()
-            return redirect('/')
+            return redirect('/Patient_List')
 
     else:
         form = AnthropometricForm()
         return render(request, 'diet/add-anthropometric.html', {'form': form})
+
+
+def addAnamnesi(request):
+    #patients = get_object_or_404(Paciente, pk=id)
+    if request.method == 'POST':
+        form = AnamnesiForm(request.POST)
+
+        if form.is_valid():
+            pacientes = form.save(commit=False)
+            pacientes.save()
+            return redirect('/Patient_List')
+
+    else:
+        form = AnamnesiForm()
+        return render(request, 'diet/add-anamnesis.html', {'form': form})
 
 
 def choseEdit(request, id):
@@ -49,7 +65,6 @@ def choseEdit(request, id):
     Anamnesis = Anamnesi.objects.filter(id=ID)
 
     return render(request,'diet/chose-edictions.html', {'stauts_body': stauts_body, 'Anamnesis':Anamnesis})    
-
 
 
 

@@ -1,0 +1,188 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="content">
+
+	<div id="content" class="colM">
+		<h1>Add Anamnesi</h1>
+		<div id="content-main">
+			<form method="post" id="anthropometric_form" novalidate="">
+			<input type="hidden" name="csrfmiddlewaretoken" value="gfZXu2ufGTvpWO8sUqC1xh7ljzlg1UwYFjLvRCuZlBSZppihlVmNyUJAnKoYiROL">
+		<div>
+			<fieldset class="module aligned ">
+				{% csrf_token %}
+
+				<div class="submit-row" >
+					<h2 id="ajust-row"><strong>DADOS PESSOAIS</strong></h2>
+				</div>
+
+				<div class="form-row field-weight">
+					<div>
+						<label class="required" for="id_patient_name">Nome do Paciente:</label>
+						<div class="related-widget-wrapper">
+							{{form.patient_name}}
+							<a class="related-widget-wrapper-link change-related" id="change_id_patient_name"
+								href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1"></a>
+								<img src="/static/admin/img/icon-changelink.svg" alt="Modificar">
+							</a>
+							<a class="related-widget-wrapper-link add-related" id="add_id_patient_name"
+								href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1">
+								<img src="/static/admin/img/icon-addlink.svg" alt="Adicionar">
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-row field-weight">
+					<div>
+						<label class="required" for="id_weight">CPF:</label>
+						{{form.cpf}}
+					</div>
+				</div>
+
+				<div class="form-row field-pu">
+					<div>
+						<label class="required" for="id_pu">Data de Nascimento:</label>
+						{{form.age_date}}
+					</div>
+				</div>
+
+				<div class="form-row field-pt">
+					<div>
+						<label class="required" for="id_pt">Gênero:</label>
+						{{form.gener}}
+					</div>
+				</div>
+
+				<div class="form-row field-height">
+						<div>
+								<label class="required" for="id_height">Estatdo Civil:</label>
+								{{form.marital_st}}
+						</div>
+				</div>
+
+				<div class="form-row field-imc">
+					<div>
+						<label class="required" for="id_imc">Filhos:</label>
+						{{form.sons}}
+					</div>
+				</div>
+
+				<div class="form-row field-imc">
+					<div>
+						<label class="required" for="id_imc">Escolaridade:</label>
+						{{form.schooling}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_arm">
+					<div>
+						<label class="required" for="id_circ_arm">Profissão:</label>
+						{{form.profession}}
+					</div>
+				</div>
+
+				<div class="submit-row" >
+					<h2 id="ajust-row"><strong>ENDEREÇO</strong></h2>
+				</div>
+
+				<div class="form-row field-circ_waist">
+					<div>
+						<label class="required" for="id_circ_waist">CEP:</label>
+						{{form.cep}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_abdomen">
+					<div>
+						<label class="required" for="id_circ_abdomen">Rua:</label>
+						{{form.street}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_hip">
+					<div>
+						<label class="required" for="id_circ_hip">Número:</label>
+						{{form.number}}
+					</div>
+				</div>
+
+				<div class="form-row field-pct">
+					<div>
+						<label class="required" for="id_pct">Bairro:</label>
+						{{form.district}}
+					</div>
+				</div>
+
+				<div class="form-row field-cmb">
+					<div>
+						<label class="required" for="id_cmb">Cidade:</label>
+						{{form.city}}
+					</div>
+				</div>
+
+				<div class="form-row field-edema">
+					<div>
+						<label class="required" for="id_edema">Estado:</label>
+						{{form.state}}
+					</div>
+				</div>
+
+				<div class="submit-row" >
+						<h2 id="ajust-row"><strong>Contato</strong></h2>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Celular:</label>
+						{{form.cel}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Email:</label>
+						{{form.email}}
+					</div>
+				</div>
+
+				<div class="submit-row" >
+					<h2 id="ajust-row"><strong>DADOS DO PACIENTE</strong></h2>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Motivo da Consulta:</label>
+						{{form.consult_motivation}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Lazer / Hábitos:</label>
+						{{form.leisure_habits}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">Alergias Alimentares:</label>
+						{{form.food_allergies}}
+					</div>
+				</div>
+
+		</fieldset>
+		<div class="submit-row">
+			<input type="submit" value="Salvar" class="default" name="_save">
+			<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
+			<input type="submit" value="Salvar e continuar editando" name="_continue">
+		</div>
+		</div>
+	</form>
+</div>
+
+<br class="clear">
+</div>
+</div>
+
+{% endblock %}

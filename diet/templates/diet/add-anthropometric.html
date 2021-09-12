@@ -1,279 +1,141 @@
-
 {% extends 'base.html' %}
 {% block content %}
 
-
 <div class="content">
 
-<div id="content" class="colM"> 
-        <h1>Adicionar anthropometric</h1>
-        
-        <div id="content-main">
-                <form method="post" id="anthropometric_form" novalidate="">
-                        <input type="hidden" name="csrfmiddlewaretoken" value="gfZXu2ufGTvpWO8sUqC1xh7ljzlg1UwYFjLvRCuZlBSZppihlVmNyUJAnKoYiROL">
-        <div>
-                <fieldset class="module aligned ">
+	<div id="content" class="colM">
+		<h1>Add anthropometric</h1>
+		<div id="content-main">
+			<form method="post" id="anthropometric_form" novalidate="">
+			<input type="hidden" name="csrfmiddlewaretoken" value="gfZXu2ufGTvpWO8sUqC1xh7ljzlg1UwYFjLvRCuZlBSZppihlVmNyUJAnKoYiROL">
+		<div>
+			<fieldset class="module aligned ">
+				{% csrf_token %}
 
-                <div class="form-row field-patient_name">
-                        <div>
-                        <label class="required" for="id_patient_name">PACIENTE:</label>
-                                
-                                <div class="related-widget-wrapper">
-                                <select name="patient_name" required="" id="id_patient_name">
-                                        <option value="" selected="">---------</option>
-                                        <option value="1">Alexsandro M. Oliveira</option>
-                                </select>
-                                <a class="related-widget-wrapper-link change-related" id="change_id_patient_name" data-href-template="/admin/diet/anamnesi/__fk__/change/?_to_field=id&amp;_popup=1" title="Alterar anamnesi selecionado"><img src="/static/admin/img/icon-changelink.svg" alt="Modificar"></a><a class="related-widget-wrapper-link add-related" id="add_id_patient_name" href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1" title="Adicionar outro anamnesi"><img src="/static/admin/img/icon-addlink.svg" alt="Adicionar"></a>
-                        </div>
-                </div>
-        </div>
+				<div class="submit-row" >
+					<h2 id="ajust-row"><strong>DADOS PESSOAIS</strong></h2>
+				</div>
+				
+				<div class="form-row field-patient_name">
+					<div>
+						<label class="required" for="id_patient_name">NOME DO PACIENTE:</label>
+						<div class="related-widget-wrapper">
+							{{form.patient_name}}
+							<a class="related-widget-wrapper-link change-related" id="change_id_patient_name"
+								href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1"></a>
+								<img src="/static/admin/img/icon-changelink.svg" alt="Modificar">
+							</a>
+							<a class="related-widget-wrapper-link add-related" id="add_id_patient_name"
+								href="/admin/diet/anamnesi/add/?_to_field=id&amp;_popup=1">
+								<img src="/static/admin/img/icon-addlink.svg" alt="Adicionar">
+							</a>
+						</div>
+					</div>
+				</div>
 
-<div class="form-row field-weight">
-        <div>
-                <label class="required" for="id_weight">PESO ATUAL:</label>     
-                <input type="number" name="weight" step="0.01" required="" id="id_weight">
-        </div>
+				<div class="form-row field-weight">
+					<div>
+						<label class="required" for="id_weight">PESO ATUAL:</label>
+						{{form.weight}}
+					</div>
+				</div>
+
+				<div class="form-row field-pu">
+					<div>
+						<label class="required" for="id_pu">PU:</label>
+						{{form.pu.0}}
+					</div>
+				</div>
+
+				<div class="form-row field-pt">
+					<div>
+						<label class="required" for="id_pt">PT:</label>
+						{{form.pt}}
+					</div>
+				</div>
+
+				<div class="form-row field-height">
+						<div>
+								<label class="required" for="id_height">ALTURA:</label>
+								{{form.height}}
+						</div>
+				</div>
+
+				<div class="form-row field-imc">
+					<div>
+						<label class="required" for="id_imc">IMC:</label>
+						{{form.imc}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_arm">
+					<div>
+						<label class="required" for="id_circ_arm">CIRC. BRAÇO:</label>
+						{{form.circ_arm}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_waist">
+					<div>
+						<label class="required" for="id_circ_waist">CIRC. CINTURA:</label>
+						{{form.circ_waist}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_abdomen">
+					<div>
+						<label class="required" for="id_circ_abdomen">CIRC. ABDOMEM:</label>
+						{{form.circ_abdomen}}
+					</div>
+				</div>
+
+				<div class="form-row field-circ_hip">
+					<div>
+						<label class="required" for="id_circ_hip">CIRC. QUADRIL:</label>
+						{{form.circ_hip}}
+					</div>
+				</div>
+
+				<div class="form-row field-pct">
+					<div>
+						<label class="required" for="id_pct">PCT:</label>
+						{{form.pct}}
+					</div>
+				</div>
+
+				<div class="form-row field-cmb">
+					<div>
+						<label class="required" for="id_cmb">CMB:</label>
+						{{form.cmb}}
+					</div>
+				</div>
+
+				<div class="form-row field-edema">
+					<div>
+						<label class="required" for="id_edema">EDEMA:</label>
+						{{form.edema}}
+					</div>
+				</div>
+
+				<div class="form-row field-age_range">
+					<div>
+						<label class="required" for="id_age_range">FAIXA ETÁRIA:</label>
+						{{form.age_range}}
+					</div>
+				</div>
+
+		</fieldset>
+		<div class="submit-row">
+			<input type="submit" value="Salvar" class="default" name="_save">
+			<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
+			<input type="submit" value="Salvar e continuar editando" name="_continue">
+		</div>
+		</div>
+	</form>
 </div>
 
-<div class="form-row field-pu">
-        <div>
-                <label class="required" for="id_pu">PU:</label>
-                <input type="number" name="pu" step="0.01" required="" id="id_pu">
-        </div>
-      
+<br class="clear">
+</div>
 </div>
 
-  <div class="form-row field-pt">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_pt">PT:</label>
-                  
-                      <input type="number" name="pt" step="0.01" required="" id="id_pt">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-height">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_height">ALTURA:</label>
-                  
-                      <input type="number" name="height" step="0.01" required="" id="id_height">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-imc">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_imc">IMC:</label>
-                  
-                      <input type="number" name="imc" step="0.01" required="" id="id_imc">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-circ_arm">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_circ_arm">CIRC. BRAÇO:</label>
-                  
-                      <input type="number" name="circ_arm" step="0.01" required="" id="id_circ_arm">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-circ_waist">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_circ_waist">CIRC. CINTURA:</label>
-                  
-                      <input type="number" name="circ_waist" step="0.01" required="" id="id_circ_waist">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-circ_abdomen">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_circ_abdomen">CIRC. ABDOMEM:</label>
-                  
-                      <input type="number" name="circ_abdomen" step="0.01" required="" id="id_circ_abdomen">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-circ_hip">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_circ_hip">CIRC. QUADRIL:</label>
-                  
-                      <input type="number" name="circ_hip" step="0.01" required="" id="id_circ_hip">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-pct">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_pct">PCT:</label>
-                  
-                      <input type="number" name="pct" step="0.01" required="" id="id_pct">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-cmb">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_cmb">CMB:</label>
-                  
-                      <input type="number" name="cmb" step="0.01" required="" id="id_cmb">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-edema">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_edema">EDEMA:</label>
-                  
-                      <input type="number" name="edema" step="0.01" required="" id="id_edema">
-                  
-              
-              
-          </div>
-      
-  </div>
-
-  <div class="form-row field-age_range">
-      
-      
-          <div>
-              
-              
-                  <label class="required" for="id_age_range">FAIXA ETÁRIA:</label>
-                  
-                      <select name="age_range" required="" id="id_age_range">
-<option value="" selected="">---------</option>
-
-<option value="A">Criança 0 a 5 Anos</option>
-
-<option value="B">Criança 6 a 10 Anos</option>
-
-<option value="C">Adolescente 11 a 19 Anos</option>
-
-<option value="D">Adulto</option>
-
-</select>
-                  
-              
-              
-          </div>
-      
-  </div>
-
-</fieldset>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="submit-row">
-
-<input type="submit" value="Salvar" class="default" name="_save">
-
-
-<input type="submit" value="Salvar e adicionar outro(a)" name="_addanother">
-<input type="submit" value="Salvar e continuar editando" name="_continue">
-
-
-</div>
-
-
-
-<script id="django-admin-form-add-constants" src="/static/admin/js/change_form.js" data-model-name="anthropometric" async="">
-</script>
-
-
-
-
-<script id="django-admin-prepopulated-fields-constants" src="/static/admin/js/prepopulate_init.js" data-prepopulated-fields="[]">
-</script>
-
-
-</div>
-</form></div>
-
-    
-    <br class="clear">
-  </div>
-
-
-</div>
-  {% endblock %}
+{% endblock %}

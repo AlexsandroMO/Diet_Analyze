@@ -8,6 +8,12 @@
   width: 80px;
   text-align: center;
 }
+
+#ajust-row{
+  float: left;
+  background-color: #f8f8f8;
+  color: black;
+}
 /* 
 .editable-field{
   width: 500px;
