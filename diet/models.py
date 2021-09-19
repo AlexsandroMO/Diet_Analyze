@@ -181,7 +181,7 @@ class NutriCalc(models.Model): #Calculo Nutricional
 class NutriCalcResult(models.Model): #Resultado Calculo Nutricional
 
     patient_name = models.ForeignKey(Anamnesi, on_delete=models.CASCADE, verbose_name='PACIENTE')
-    res_ptn = models.DecimalField(max_digits=6, decimal_places=2, verbose_name='PTN')
+    res_ptn = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='PTN')
     res_gli = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='GLI')
     res_lip = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='LIP')
     res_ca = models.DecimalField(max_digits=6, decimal_places=2, blank=True, null=True, verbose_name='Ca')
