@@ -4,7 +4,7 @@ from . models import Base, Gender, MaritalStatus, Schooling, Anamnesi, Anthropom
 
 class BaseAdmin(admin.ModelAdmin):
     fields = ('food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
-    list_display = ('id','food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber','created_at','update_at')
+    list_display = ('id','food_name','qt_g','ptn','gli','lip','ca','p','fe','vit_a','tia','ribo','nia','vit_c','fiber')
     
 class GenderAdmin(admin.ModelAdmin):
     list_display = ('name_gener',)
