@@ -87,7 +87,7 @@ def dataPatient(request):
     stauts_body = ''
 
     POST = dict(request.POST)   
-    print(POST)
+    #print(POST)
 
     ID = int(POST['_selected_patient'][0])
     action = POST['action'][0]
@@ -106,16 +106,30 @@ def dataPatient(request):
     elif action == '2':
         bases_read = []
         for n in NutriCal:
-            print(n.id, n.food_name_id)
+            #print(n.id, n.food_name_id)
             for a in Bases:
                 if a.id == n.food_name_id:
                     bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
 
+        calc_end = []
+        plus0,plus1,plus2,plus3,plus4,plus5,plus6,plus7,plus8,plus9,plus10,plus11 = 0,0,0,0,0,0,0,0,0,0,0,0
         for i in bases_read:
-            print(i)
-        print('>>>>>>>>>>>> ', bases_read[1][1])
+            plus0 += i[2]
+            plus1 += i[3]
+            plus2 += i[4]
+            plus3 += i[5]
+            plus4 += i[6]
+            plus5 += i[7]
+            plus6 += i[8]
+            plus7 += i[9]
+            plus8 += i[10]
+            plus9 += i[11]
+            plus10 += i[12]
+            plus11 += i[13]
 
-        return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
+        calc_end.append([plus0,plus1,plus2,plus3,plus4,plus5,plus6,plus7,plus8,plus9,plus10,plus11])
+
+        return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'calc_end':calc_end, 'read_id':read_id})
 
 
 def editAnamnesi(request, id):
