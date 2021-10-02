@@ -111,6 +111,10 @@ def dataPatient(request):
                 if a.id == n.food_name_id:
                     bases_read.append([a.food_name,a.qt_g,a.ptn,a.gli,a.lip,a.ca,a.p,a.fe,a.vit_a,a.tia,a.ribo,a.nia,a.vit_c,a.fiber])
 
+        for i in bases_read:
+            print(i)
+        print('>>>>>>>>>>>> ', bases_read[1][1])
+
         return render(request,'diet/calc-calorias.html', {'stauts_body':stauts_body, 'bases_read':bases_read, 'read_id':read_id})
 
 
